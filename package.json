@@ -1,0 +1,15 @@
+{
+  "name": "fullstack",
+  "version": "1.0.0",
+  "description": "this is my first app",
+  "main": "login.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "jay mishra",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "express": "^5.2.1"
+  }
+}

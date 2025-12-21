@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jay's calculator</title>
+    <style>
+        table,td,tr{
+            background-color: black;
+            border: 2px solid black;
+            border-collapse: separate;
+            text-align: center;
+        }
+        table,tr{
+            height: 100%;
+            width: 100%;
+        }
+        table{
+            height: 500px;
+            width: 500px;
+            border: 10px solid black;
+            border-top: 8px solid black;
+        }
+        textarea{
+            height: 95%;
+            width: 95%;
+            font-weight: 250;
+            font-size: 300%;
+            background-color: antiquewhite;
+            padding: 9px;
+            font-family: cursive;
+        }
+        .calc{
+            top: 2%;
+            bottom: 40%;
+            left:60%;
+            size: 250rem;
+            padding-right: 55%;
+            float: right;
+            position: fixed;
+
+        }
+        button{
+            width: 100%;
+            height: 100%;
+            font-size: 250%;
+            background-color: darkseagreen;
+        }
+        button:hover{
+            color: red;
+        }
+        .class{
+            border: 8px solid blue;
+            height: 100%;
+            width: 100%;
+        }
+        .cont{
+            border: 5px solid black;
+            float: left;
+            width: 800px;
+            height: 610px;
+            background-attachment: scroll;
+            color: red;
+            font-size: 20px;
+            position: inherit;
+            background-color: aquamarine;
+        }
+        .conti{
+            border: 5px solid black;
+            background-attachment: scroll;
+            color: red;
+            float: inline-start;
+            font-size: 20px;
+            position: inherit;
+            background-color: chartreuse;
+        }
+        img{
+            width: 250px;
+            height: 418px
+        }
+    </style>
+</head>
+<body bgcolor="yellow">
+    <div class="cont">
+        <h1 style="color: black; text-decoration: underline;">MY CALCULATOR</h1>
+        <hr>
+        <p style="font-family: cursive;">This is my first calculator application. </p><p style="font-family: cursive;">I am very much sure that you will find my app interesting.</p>
+        <p style="font-family: cursive;">This calculator is made just for the purpose to prove myself. </p><p style="font-family: cursive;">I want you to explore it once and suggest the changes (if any)</p>
+        <ul style="list-style-type: decimal; color: black;">
+            <li>You can calculate for the arithmetic operations.</li>
+            <li>I have also given percentage.</li>
+            <li>a cls operation that clear at one go.</li>
+            <li>It also includes the bitwise operation.</li>
+        </ul>
+        <marquee style="color: white; background-color: black;">My calculator is newly coded application.</marquee>
+        <hr style="color: black;">
+        
+    </div>
+    <div class="calc">
+    <table>
+            <tr>
+                <td colspan="4"><textarea name="input" id="inp"></textarea></td>
+            </tr>
+            <tr><td style="color: azure; text-align: center; font-weight: bold;" colspan="4">My Calculator</td></tr>
+            <tr class="key">
+                <td><button onclick="appendtotextarea('(')">(</button></td>
+                <td><button onclick="appendtotextarea(')')">)</button></td>
+                <td><button onclick="appendtotextarea('[')">[</button></td>
+                <td><button onclick="appendtotextarea(']')">]</button></td>
+            </tr>
+            <tr class="key">
+                <td><button class="1" onclick="appendtotextarea('1')">1</button></td>
+                <td><button class="2" onclick="appendtotextarea('2')">2</button></td>
+                <td><button class="3" onclick="appendtotextarea('3')">3</button></td>
+                <td><button class="*" onclick="appendtotextarea('*')">*</button></td>
+            </tr>
+            <tr class="key">
+                <td><button onclick="appendtotextarea('4')">4</button></td>
+                <td><button onclick="appendtotextarea('5')">5</button></td>
+                <td><button onclick="appendtotextarea('6')">6</button></td>
+                <td><button onclick="appendtotextarea('+')">+</button></td>
+            </tr>
+            <tr class="key">
+                <td><button onclick="appendtotextarea('7')">7</button></td>
+                <td><button onclick="appendtotextarea('8')">8</button></td>
+                <td><button onclick="appendtotextarea('9')">9</button></td>
+                <td><button onclick="appendtotextarea('-')">-</button></td>
+            </tr>
+            <tr class="key">
+                <td><button onclick="appendtotextarea('.')">.</button></td>
+                <td><button onclick="appendtotextarea('0')">0</button></td>
+                <td><button onclick="del()">del</button></td>
+                <td><button onclick="appendtotextarea('/')">/</button></td>
+            </tr>
+            <tr class="key">
+                <td><button onclick="appendtotextarea('~')">~</button></td>
+                <td><button onclick="percent('%')">%</button></td>
+                <td><button onclick="appendtotextarea('^')">^</button></td>
+                <td><button onclick="cls()">cls</button></td>
+            </tr>
+            <tr class="key">
+                <td><button onclick="appendtotextarea('sin')">sin</button></td>
+                <td><button onclick="appendtotextarea('cos')">cos</button></td>
+                <td><button onclick="appendtotextarea('tan')">tan</button></td>
+                <td><button onclick="calculate()" style="background-color: blueviolet;">=</button></td>
+            </tr>
+        </table>
+        </div>
+</body>
+<script>
+    function appendtotextarea(val){
+        document.getElementById('inp').value += val;
+    }
+    function calculate(){
+        let exp = document.getElementById('inp').value;
+        try{
+            exp = exp.replace(/sin/g, 'Math.sin');
+            exp = exp.replace(/cos/g, 'Math.cos');
+            exp = exp.replace(/tan/g, 'Math.tan');
+            exp = exp.replace(/\^/g, '**');
+        }
+        catch(e){
+            document.getElementById('inp').value = 'Error';
+        }
+        let res = eval(exp);
+        document.getElementById('inp').value = res;
+    }
+    function del(){
+        let r = document.getElementById('inp').value;
+        document.getElementById('inp').value = r.slice(0,-1);
+    }
+    function cls(){
+        let r = "";
+        document.getElementById('inp').value = r;
+    }
+    function percent(){
+        let p = document.getElementById('inp').value;
+        document.getElementById('inp').value = (p/100)*100 + '%';
+    }
+</script>
+</html>
