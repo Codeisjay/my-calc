@@ -10,8 +10,7 @@ app.get('/', (req,res) => {
 });
 
 app.post('/login',(req,res)=>{
-    const username = req.body.username;
-    const password = req.body.password;
+    const {username, password} = req.body;
     if(username === "admin" && password === "1234")
     {
         res.sendFile(path.join(__dirname, "public", "welcome.html"));
