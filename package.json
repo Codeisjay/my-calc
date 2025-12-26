@@ -4,7 +4,7 @@
   "description": "this is my first app",
   "main": "login.js",
   "scripts": {
-    "test": "npm start"
+    "start": "node login.js"
   },
   "author": "jay mishra",
   "license": "ISC",
