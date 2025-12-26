@@ -3,10 +3,10 @@ const bodyparser = require('body-parser');
 const path = require('path');
 const app = express();
 
-app.use(bodyparser.urlencoded({extended : true}));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get('/', (req,res) => {
-    res.sendFile(path.join(__dirname,"index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.post('/login',(req,res)=>{
@@ -14,11 +14,10 @@ app.post('/login',(req,res)=>{
     const password = req.body.password;
     if(username === "admin" && password === "1234")
     {
-        res.sendFile(path.join(__dirname,"welcome.html"));
+        res.sendFile(path.join(__dirname, "public", "welcome.html"));
     }
     else{
-        res.sendFile(path.join(__dirname,"index.html"));
-    }
+        res.sendFile(path.join(__dirname, "public", "index.html"));    }
 });
 
 app.listen(3000, ()=>{
